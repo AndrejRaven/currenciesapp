@@ -143,7 +143,7 @@ const MainLayout = (props) =>  {
         </div>
         <Divider />
         <List>
-          <NavLink to={`${process.env.PUBLIC_URL}/favorite`} exact>
+          <NavLink to={`${process.env.PUBLIC_URL}/favourite`} exact>
             <ListItem button>
               <ListItemIcon>{<FavoriteIcon />}</ListItemIcon>
               <ListItemText primary={'Favorite'} /> 

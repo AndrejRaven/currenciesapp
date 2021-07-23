@@ -56,7 +56,7 @@ const StyledTableCell = withStyles((theme) => ({
   }))(TableRow);
 
 
-class Currencies extends React.Component {
+class Favourite extends React.Component {
   static propTypes = {
     fetchCurrencies: PropTypes.func,
     loading: PropTypes.shape({
@@ -64,16 +64,6 @@ class Currencies extends React.Component {
       error: PropTypes.oneOfType([PropTypes.bool,PropTypes.string]),
       addToFavourite: PropTypes.func,
     }),
-  }
-
-  addToFavourite(favourites, currency){
-      const arr = this.props.favourite;
-      if(!arr.includes(currency)) {
-      arr.push(currency);
-      this.props.addToFavourite(arr);
-      } else {
-         prompt('already added'); 
-      }
   }
 
   componentDidMount(){
@@ -86,13 +76,14 @@ class Currencies extends React.Component {
   render() {
     const { loading: { active, error }, currencies, favourite } = this.props;
     const classes = this.props;
+    
 
 
     const Wrapper = props => (
       <div className={classes.props}>
         <Grid container spacing={3}>
           <Grid item xs={12}>
-            <Typography variant="h3" align="center">List of available currencies</Typography>
+            <Typography variant="h3" align="center">List of favourite currencies</Typography>
           </Grid>
           <Grid item xs={12}>
             {props.children}
@@ -125,19 +116,21 @@ class Currencies extends React.Component {
                             <StyledTableCell className={classes.tableCell}>Currency</StyledTableCell>
                             <StyledTableCell className={classes.tableCell} align="right">Code</StyledTableCell>
                             <StyledTableCell className={classes.tableCell} align="right">Mid</StyledTableCell>
-                            <StyledTableCell className={classes.tableCell} align="right"></StyledTableCell>
+                            <StyledTableCell className={classes.tableCell} align="right">
+                                <Button variant='outlined' size='small' color='primary' className={classes.button} onClick={() => favourite.length = 0}>Remove all</Button>
+                            </StyledTableCell>
                         </TableRow>
                     </TableHead>
                     <TableBody>
-                        {currencies.map((currency) => (
+                        {favourite.map((currency) => (
                             <StyledTableRow key={currency.code}>
                                 <StyledTableCell className={classes.tableCell} component="th" scope="row">
                                     {currency.currency.toUpperCase()}
                                 </StyledTableCell>
                                 <StyledTableCell className={classes.tableCell} align="right">{currency.code}</StyledTableCell>
-                                <StyledTableCell className={classes.tableCell} align="right">{currency.mid} / zl</StyledTableCell>
+                                <StyledTableCell className={classes.tableCell} align="right">{currency.mid} / zl </StyledTableCell>
                                 <StyledTableCell className={classes.tableCell} align="right">
-                                    <Button variant='outlined' size='small' color='primary' className={classes.button} onClick={() => this.addToFavourite(favourite, currency)}>Add to favourite</Button>
+                                    <Button variant='outlined' size='small' color='primary' className={classes.button} onClick={() => favourite.splice(currency, 1)}>Remove</Button>
                                 </StyledTableCell>
 
                             </StyledTableRow>
@@ -152,4 +145,4 @@ class Currencies extends React.Component {
 }
 
 
-export default withStyles(useStyles)(Currencies); 
+export default withStyles(useStyles)(Favourite); 

@@ -4,6 +4,7 @@ import { api } from "../settings";
 /* selectors */
 export const getAllCurrencies = ({currencies}) => currencies.data;
 export const getCurrenciesLoadingState = ({currencies}) => currencies.loading;
+export const getFavorite = ({currencies}) => currencies.favourite;
 
 /* action name creator */
 const reducerName = 'currencies';
@@ -15,11 +16,15 @@ const FETCH_ALL_SUCCESS = createActionName('FETCH_ALL_SUCCESS');
 const FETCH_ALL_ERROR = createActionName('FETCH_ALL_ERROR');
 const ADD_TO_FAVOURITE = createActionName('ADD_TO_FAVOURITE');
 
+
 /* action creators */
 export const fetchCurrenciesStarted = payload => ({ payload, type: FETCH_ALL_START });
 export const fetchCurrenciesSuccess = payload => ({ payload, type: FETCH_ALL_SUCCESS });
 export const fetchCurrenciesError = payload => ({ payload, type: FETCH_ALL_ERROR });
-export const addToFavourite = payload => ({ payload: { ...payload, id: payload.id }, type: ADD_TO_FAVOURITE});
+export const addToFavourite = payload => ({ payload, type: ADD_TO_FAVOURITE });
+
+
+
 /* thunk creators */
 export const fetchCurrenciesFromAPI = () => {
   return (dispatch, getState) => {
@@ -72,7 +77,7 @@ export default function reducer(statePart = [], action = {}) {
     case ADD_TO_FAVOURITE: {
       return {
         ...statePart,
-        currency: action.payload,
+        favourite: action.payload,
       }
     }
     default:
