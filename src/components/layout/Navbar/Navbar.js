@@ -4,7 +4,6 @@ import { makeStyles, useTheme } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
-import Container from '@material-ui/core/Container'
 import List from '@material-ui/core/List';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Typography from '@material-ui/core/Typography';
@@ -167,16 +166,6 @@ const MainLayout = (props) =>  {
           </NavLink>
         </List>
       </Drawer>
-      <main className={classes.content}>
-        <React.Fragment>
-          <CssBaseline />
-          <Container maxWidth="lg">
-            <Typography component="div" style={{ backgroundColor: '#cfe8fc', height: '100vh' }}>
-                {props.children}
-            </Typography> 
-          </Container>
-        </React.Fragment>
-      </main>
     </div>
   );
 }

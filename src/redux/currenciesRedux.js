@@ -19,7 +19,7 @@ const ADD_TO_FAVOURITE = createActionName('ADD_TO_FAVOURITE');
 export const fetchCurrenciesStarted = payload => ({ payload, type: FETCH_ALL_START });
 export const fetchCurrenciesSuccess = payload => ({ payload, type: FETCH_ALL_SUCCESS });
 export const fetchCurrenciesError = payload => ({ payload, type: FETCH_ALL_ERROR });
-export const addToFavourite = payload => ({ payload, type: ADD_TO_FAVOURITE});
+export const addToFavourite = payload => ({ payload: { ...payload, id: payload.id }, type: ADD_TO_FAVOURITE});
 /* thunk creators */
 export const fetchCurrenciesFromAPI = () => {
   return (dispatch, getState) => {
@@ -29,7 +29,7 @@ export const fetchCurrenciesFromAPI = () => {
       Axios
         .get(`${api.url}/${api.tableA}`)
         .then(res => {
-          dispatch(fetchCurrenciesSuccess(res.data));
+          dispatch(fetchCurrenciesSuccess(res.data[0].rates));
         })
         .catch(err => {
           dispatch(fetchCurrenciesError(err.message || true));
@@ -72,7 +72,7 @@ export default function reducer(statePart = [], action = {}) {
     case ADD_TO_FAVOURITE: {
       return {
         ...statePart,
-        product: action.payload,
+        currency: action.payload,
       }
     }
     default:

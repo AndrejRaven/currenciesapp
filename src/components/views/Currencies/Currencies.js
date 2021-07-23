@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import Paper from '@material-ui/core/Paper';
-import {Grid, Button } from '@material-ui/core/';
+import {Grid, Button, TableContainer, Table, TableHead, TableRow, TableBody, TableCell } from '@material-ui/core/';
 import { withStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 
@@ -28,7 +28,32 @@ const useStyles = theme => ({
     marginRight: theme.spacing(1),
     width: 200,
   },
+  table: {
+    minWidth: 340,
+  },
+  tableCell: {
+    paddingRight: 4,
+    paddingLeft: 5
+  }
 });
+
+const StyledTableCell = withStyles((theme) => ({
+    head: {
+      backgroundColor: theme.palette.common.black,
+      color: theme.palette.common.white,
+    },
+    body: {
+      fontSize: 14,
+    },
+  }))(TableCell);
+
+  const StyledTableRow = withStyles((theme) => ({
+    root: {
+      '&:nth-of-type(odd)': {
+        backgroundColor: theme.palette.action.hover,
+      },
+    },
+  }))(TableRow);
 
 
 class Currencies extends React.Component {
@@ -56,21 +81,12 @@ class Currencies extends React.Component {
 
     const Wrapper = props => (
       <div className={classes.props}>
-        <Grid container spacing={3} justify="center">
+        <Grid container spacing={3}>
           <Grid item xs={12}>
-            <Typography variant="h3" align="center">List of currencies</Typography>
+            <Typography variant="h3" align="center">List of available currencies</Typography>
           </Grid>
           <Grid item xs={12}>
-            <Paper elevation={3} className={classes.paper}>
-              <Grid container spasing={3} justify="center" align="center" alignItems="center">
-                <Grid item xs={3}>
-                  <Typography variant="h5" gutterBottom>Currency</Typography>
-                </Grid>
-                <Grid item xs={6}>{props.children}</Grid>
-                <Grid item xs={3}>
-                </Grid>
-              </Grid>
-            </Paper>
+            {props.children}
           </Grid>
         </Grid>
       </div>
@@ -92,19 +108,34 @@ class Currencies extends React.Component {
         );
       } else {
         return (
-          <Wrapper>  
-              {currencies.map(({i}) => (
-                <Grid container key={i}>
-                  <Grid item xs={9}>
-                    <Typography variant="h5" gutterBottom>
-                        
-                    </Typography> 
-                  </Grid>
-                  <Grid item xs={3}>
-                    <Button variant='outlined' size='small' color='primary' className={classes.button} onClick={addToFavourite}>Add to favourite</Button>
-                  </Grid> 
-                </Grid>
-              ))}
+          <Wrapper> 
+              <TableContainer component={Paper}>
+                <Table className={classes.table} aria-label="customized table">
+                    <TableHead>
+                        <TableRow>
+                            <StyledTableCell className={classes.tableCell}>Currency</StyledTableCell>
+                            <StyledTableCell className={classes.tableCell} align="right">Code</StyledTableCell>
+                            <StyledTableCell className={classes.tableCell} align="right">Mid</StyledTableCell>
+                            <StyledTableCell className={classes.tableCell} align="right"></StyledTableCell>
+                        </TableRow>
+                    </TableHead>
+                    <TableBody>
+                        {currencies.map((currency) => (
+                            <StyledTableRow key={currency.code}>
+                                <StyledTableCell className={classes.tableCell} component="th" scope="row">
+                                    {currency.currency.toUpperCase()}
+                                </StyledTableCell>
+                                <StyledTableCell className={classes.tableCell} align="right">{currency.code}</StyledTableCell>
+                                <StyledTableCell className={classes.tableCell} align="right">{currency.mid}</StyledTableCell>
+                                <StyledTableCell className={classes.tableCell} align="right">
+                                    <Button variant='outlined' size='small' color='primary' className={classes.button} onClick={addToFavourite}>Add to favourite</Button>
+                                </StyledTableCell>
+
+                            </StyledTableRow>
+                        ))}
+                    </TableBody>
+                </Table>    
+            </TableContainer>
           </Wrapper>
         );
       }
