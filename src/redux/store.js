@@ -13,7 +13,6 @@ const initialState = {
     data: [],
     favourite: [],
   },
-  favourite: {},
 };
 
 // define reducers

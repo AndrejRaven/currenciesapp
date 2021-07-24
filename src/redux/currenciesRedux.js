@@ -44,7 +44,7 @@ export const fetchCurrenciesFromAPI = () => {
 };
 
 /* reducer */
-export default function reducer(statePart = [], action = {}) {
+export default function reducer(statePart = [], action={}) {
   switch (action.type) {
     case FETCH_ALL_START: {
       return {
@@ -75,10 +75,9 @@ export default function reducer(statePart = [], action = {}) {
       }
     }
     case ADD_TO_FAVOURITE: {
-      return {
-        ...statePart,
+      return Object.assign({}, statePart, {
         favourite: action.payload,
-      }
+      })
     }
     default:
       return statePart;

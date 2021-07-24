@@ -57,6 +57,9 @@ const StyledTableCell = withStyles((theme) => ({
 
 
 class Currencies extends React.Component {
+
+  
+
   static propTypes = {
     fetchCurrencies: PropTypes.func,
     loading: PropTypes.shape({
@@ -66,13 +69,17 @@ class Currencies extends React.Component {
     }),
   }
 
-  addToFavourite(favourites, currency){
+  addToFavourite(currency){
       const arr = this.props.favourite;
       if(!arr.includes(currency)) {
       arr.push(currency);
       this.props.addToFavourite(arr);
       } else {
-         prompt('already added'); 
+        const arr = this.props.favourite;
+        const currencyToRemove = arr.indexOf(currency);
+        arr.splice(currencyToRemove, 1);
+        
+        this.props.addToFavourite(arr);
       }
   }
 
@@ -81,7 +88,6 @@ class Currencies extends React.Component {
     fetchCurrencies();
   }
 
-  
 
   render() {
     const { loading: { active, error }, currencies, favourite } = this.props;
@@ -137,7 +143,11 @@ class Currencies extends React.Component {
                                 <StyledTableCell className={classes.tableCell} align="right">{currency.code}</StyledTableCell>
                                 <StyledTableCell className={classes.tableCell} align="right">{currency.mid} / zl</StyledTableCell>
                                 <StyledTableCell className={classes.tableCell} align="right">
-                                    <Button variant='outlined' size='small' color='primary' className={classes.button} onClick={() => this.addToFavourite(favourite, currency)}>Add to favourite</Button>
+                                    {!favourite.includes(currency) ? 
+                                       <Button variant='outlined' size='small' color='primary' className={classes.button} onClick={() => this.addToFavourite(currency)}>Add to favourite</Button>
+                                       :
+                                       <Button variant='outlined' size='small' color='primary' className={classes.button} onClick={() => this.addToFavourite(currency)}>Remove</Button>
+                                    }
                                 </StyledTableCell>
 
                             </StyledTableRow>

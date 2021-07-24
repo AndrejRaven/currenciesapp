@@ -8,6 +8,7 @@ import CurrenciesContainer from './components/views/Currencies/CurrenciesContain
 import FavouriteContainer from './components/views/Favourite/FavouriteContainer';
 
 
+
 function App() {
   return (
     <Provider store={store}>
