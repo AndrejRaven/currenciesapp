@@ -69,17 +69,30 @@ class Currencies extends React.Component {
     }),
   }
 
+  constructor(props) {
+    super(props);
+    this.state = {
+      currencies: props.currencies,
+      favourite: props.favourite,
+      }
+    }
+
   addToFavourite(currency){
       const arr = this.props.favourite;
+
       if(!arr.includes(currency)) {
       arr.push(currency);
       this.props.addToFavourite(arr);
+
+      this.setState({favourite: this.props.favourite});
       } else {
         const arr = this.props.favourite;
         const currencyToRemove = arr.indexOf(currency);
         arr.splice(currencyToRemove, 1);
         
         this.props.addToFavourite(arr);
+
+        this.setState({favourite: this.props.favourite});
       }
   }
 
@@ -90,7 +103,8 @@ class Currencies extends React.Component {
 
 
   render() {
-    const { loading: { active, error }, currencies, favourite } = this.props;
+    const { loading: { active, error } } = this.props;
+    const { currencies, favourite } = this.state;
     const classes = this.props;
 
 

@@ -62,19 +62,46 @@ class Favourite extends React.Component {
     loading: PropTypes.shape({
       active: PropTypes.bool,
       error: PropTypes.oneOfType([PropTypes.bool,PropTypes.string]),
-      addToFavourite: PropTypes.func,
+      removeFromFavourite: PropTypes.func,
     }),
   }
-
-  componentDidMount(){
-    const { fetchCurrencies } = this.props;
-    fetchCurrencies();
-  }
-
   
+  constructor(props) {
+    super(props);
+    this.state = {
+      favourite: props.favourite,
+      }
+    }
+
+    
+
+  removeFromFavourite(currency){
+    const arr = this.props.favourite;
+    
+    if(!arr.includes(currency)) {
+    arr.push(currency);
+    this.props.removeFromFavourite(arr);
+    this.setState({favourite: this.props.favourite});
+    } else {
+      const arr = this.props.favourite;
+      const currencyToRemove = arr.indexOf(currency);
+      arr.splice(currencyToRemove, 1);
+      
+      this.props.removeFromFavourite(arr);
+      this.setState({favourite: this.props.favourite});
+    }
+} 
+
+removeAllFavourite(favourite){
+  const arr = this.props.favourite;
+  arr.length = 0;
+  this.props.removeAllFavourite(arr);
+  
+  this.setState({favourite: this.props.favourite});
+}
 
   render() {
-    const { loading: { active, error }, currencies, favourite } = this.props;
+    const { favourite } = this.state;
     const classes = this.props;
     
 
@@ -91,22 +118,7 @@ class Favourite extends React.Component {
         </Grid>
       </div>
     );
-
     
-    if(active || !currencies.length){
-        return (
-          <Wrapper>
-            <p>Loading...</p>
-          </Wrapper>
-        );
-      } else if(error) {
-        return (
-          <Wrapper>
-            <p>Error! Details:</p>
-            <pre>{error}</pre>
-          </Wrapper>
-        );
-      } else {
         return (
           <Wrapper> 
               <TableContainer component={Paper}>
@@ -117,7 +129,7 @@ class Favourite extends React.Component {
                             <StyledTableCell className={classes.tableCell} align="right">Code</StyledTableCell>
                             <StyledTableCell className={classes.tableCell} align="right">Mid</StyledTableCell>
                             <StyledTableCell className={classes.tableCell} align="right">
-                                <Button variant='outlined' size='small' color='primary' className={classes.button} onClick={() => favourite.length = 0}>Remove all</Button>
+                                <Button variant='outlined' size='small' color='primary' className={classes.button} onClick={() => this.removeAllFavourite(favourite)}>Remove all</Button>
                             </StyledTableCell>
                         </TableRow>
                     </TableHead>
@@ -130,7 +142,7 @@ class Favourite extends React.Component {
                                 <StyledTableCell className={classes.tableCell} align="right">{currency.code}</StyledTableCell>
                                 <StyledTableCell className={classes.tableCell} align="right">{currency.mid} / zl </StyledTableCell>
                                 <StyledTableCell className={classes.tableCell} align="right">
-                                    <Button variant='outlined' size='small' color='primary' className={classes.button} onClick={() => favourite.splice(currency, 1)}>Remove</Button>
+                                    <Button variant='outlined' size='small' color='primary' className={classes.button} onClick={() => this.removeFromFavourite(currency)}>Remove</Button>
                                 </StyledTableCell>
 
                             </StyledTableRow>
@@ -142,7 +154,7 @@ class Favourite extends React.Component {
         );
       }
     }
-}
+
 
 
 export default withStyles(useStyles)(Favourite); 

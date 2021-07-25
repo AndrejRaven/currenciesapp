@@ -1,19 +1,14 @@
 import { connect } from 'react-redux'
-import { getAllCurrencies, fetchCurrenciesFromAPI, getCurrenciesLoadingState, addToFavourite, getFavorite } from '../../../redux/currenciesRedux';
+import { removeFromFavourite, removeAllFavourite, getFavorite } from '../../../redux/favouriteRedux';
 import Favourite from './Favourite';
 
 const mapStateToProps = (state) => ({
-  currencies: getAllCurrencies(state),
-  loading: getCurrenciesLoadingState(state),
   favourite: getFavorite(state),
 })
 
-const mapDispatchToProps = (dispatch, props) => ({
-  fetchCurrencies: () => dispatch(fetchCurrenciesFromAPI()),
-  addToFavourite: currency => dispatch(addToFavourite({
-      favourite: props.favourite,
-      currency
-  })),
+const mapDispatchToProps = (dispatch) => ({
+  removeFromFavourite: currency => dispatch(removeFromFavourite({currency})),
+  removeAllFavourite: currency => dispatch(removeAllFavourite(currency)),
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Favourite);

@@ -15,6 +15,8 @@ const FETCH_ALL_START = createActionName('FETCH_ALL_START');
 const FETCH_ALL_SUCCESS = createActionName('FETCH_ALL_SUCCESS');
 const FETCH_ALL_ERROR = createActionName('FETCH_ALL_ERROR');
 const ADD_TO_FAVOURITE = createActionName('ADD_TO_FAVOURITE');
+const REMOVE_FROM_FAVOURITE = createActionName('REMOVE_FROM_FAVOURITE');
+const REMOVE_ALL_FAVOURITE = createActionName('REMOVE_ALL_FAVOURITE');
 
 
 /* action creators */
@@ -22,6 +24,8 @@ export const fetchCurrenciesStarted = payload => ({ payload, type: FETCH_ALL_STA
 export const fetchCurrenciesSuccess = payload => ({ payload, type: FETCH_ALL_SUCCESS });
 export const fetchCurrenciesError = payload => ({ payload, type: FETCH_ALL_ERROR });
 export const addToFavourite = payload => ({ payload, type: ADD_TO_FAVOURITE });
+export const removeFromFavourite = payload => ({ payload, type: REMOVE_FROM_FAVOURITE });
+export const removeAllFavourite = payload => ({ payload, type: REMOVE_ALL_FAVOURITE });
 
 
 
@@ -75,9 +79,10 @@ export default function reducer(statePart = [], action={}) {
       }
     }
     case ADD_TO_FAVOURITE: {
-      return Object.assign({}, statePart, {
+      return  {
+        ...statePart,
         favourite: action.payload,
-      })
+      }
     }
     default:
       return statePart;
