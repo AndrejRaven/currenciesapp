@@ -82,10 +82,6 @@ const useStyles = makeStyles((theme) => ({
     flexGrow: 1,
     padding: theme.spacing(3),
   },
-  link: {
-    textDecoration: 'none',
-    color: theme.palette.text,  
-  },
 }));
 
 const MainLayout = (props) =>  {
@@ -122,7 +118,7 @@ const MainLayout = (props) =>  {
           >
             <MenuIcon />
           </IconButton>
-            <NavLink className='link' to={`${process.env.PUBLIC_URL}/`} exact>
+            <NavLink style={{ textDecoration: 'none', color: '#fff' }} to={`${process.env.PUBLIC_URL}/`} exact>
               <Typography className='link' variant="h6" noWrap>
                 Currency App
               </Typography>
@@ -149,13 +145,13 @@ const MainLayout = (props) =>  {
         </div>
         <Divider />
         <List>
-          <NavLink to={`${process.env.PUBLIC_URL}/favourite`} exact>
+          <NavLink style={{ textDecoration: 'none', color: 'grey' }} activeStyle={{ color: 'red' }} to={`${process.env.PUBLIC_URL}/favourite`} exact>
             <ListItem button>
               <ListItemIcon>{<FavoriteIcon />}</ListItemIcon>
               <ListItemText primary={'Favorite'} /> 
             </ListItem>
           </NavLink> 
-          <NavLink to={`${process.env.PUBLIC_URL}/currencies`} exact>
+          <NavLink style={{ textDecoration: 'none', color: 'grey' }} activeStyle={{ color: 'gold' }} to={`${process.env.PUBLIC_URL}/currencies`} exact>
             <ListItem button>
               <ListItemIcon>{<AttachMoneyIcon />}</ListItemIcon>
               <ListItemText primary={'Currencies'} />
@@ -164,7 +160,7 @@ const MainLayout = (props) =>  {
         </List>
         <Divider />
         <List> 
-          <NavLink to={`${process.env.PUBLIC_URL}/login`} exact>
+          <NavLink style={{ textDecoration: 'none', color: 'grey' }} activeStyle={{ color: 'blue' }} to={`${process.env.PUBLIC_URL}/login`} exact>
             <ListItem button>
               <ListItemIcon>{<ExitToAppIcon />}</ListItemIcon>
               <ListItemText primary={'Logout'} />
