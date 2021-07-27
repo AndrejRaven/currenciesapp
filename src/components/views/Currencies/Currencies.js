@@ -98,13 +98,13 @@ class Currencies extends React.Component {
 
   componentDidMount(){
     const { fetchCurrencies } = this.props;
-    fetchCurrencies();
+    fetchCurrencies(); 
   }
 
 
   render() {
-    const { loading: { active, error } } = this.props;
-    const { currencies, favourite } = this.state;
+    const { loading: { active, error }, currencies  } = this.props;
+    const { favourite } = this.state;
     const classes = this.props;
 
 

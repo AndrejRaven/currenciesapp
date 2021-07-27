@@ -82,6 +82,10 @@ const useStyles = makeStyles((theme) => ({
     flexGrow: 1,
     padding: theme.spacing(3),
   },
+  link: {
+    textDecoration: 'none',
+    color: theme.palette.text,  
+  },
 }));
 
 const MainLayout = (props) =>  {
@@ -118,9 +122,11 @@ const MainLayout = (props) =>  {
           >
             <MenuIcon />
           </IconButton>
-          <Typography variant="h6" noWrap>
-            Currency App
-          </Typography>
+            <NavLink className='link' to={`${process.env.PUBLIC_URL}/`} exact>
+              <Typography className='link' variant="h6" noWrap>
+                Currency App
+              </Typography>
+            </NavLink>  
         </Toolbar>
       </AppBar>
       <Drawer
