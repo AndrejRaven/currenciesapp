@@ -30,7 +30,7 @@ const Dashboard = () => {
       <Grid item xs>
         <Link style={{ textDecoration: 'none', color: '#222' }} to="/favourite">
           <Paper className={classes.paper}>
-            <ExitToAppIcon fontSize='large' />
+            <FavoriteIcon fontSize='large' />
             <Typography variant="h5" align="center">Favourite currencies</Typography>
           </Paper>
         </Link>
@@ -38,7 +38,7 @@ const Dashboard = () => {
       <Grid item xs>
         <Link style={{ textDecoration: 'none', color: '#222' }} to="/currencies">
           <Paper className={classes.paper}>
-            <ExitToAppIcon fontSize='large' />
+            <AttachMoneyIcon fontSize='large' />
             <Typography variant="h5" align="center">All available currencies</Typography>
           </Paper>
         </Link>
