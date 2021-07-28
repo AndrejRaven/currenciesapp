@@ -4,7 +4,7 @@ import Paper from '@material-ui/core/Paper';
 import {Grid, Button, TableContainer, Table, TableHead, TableRow, TableBody, TableCell } from '@material-ui/core/';
 import { withStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
-
+import AlertDialog from '../../common/Dialog/Dialog';
 
 
 const useStyles = theme => ({
@@ -92,7 +92,7 @@ class Favourite extends React.Component {
     }
 } 
 
-removeAllFavourite(favourite){
+removeAllFavourite(){
   const arr = this.props.favourite;
   arr.length = 0;
   this.props.removeAllFavourite(arr);
@@ -129,7 +129,8 @@ removeAllFavourite(favourite){
                             <StyledTableCell className={classes.tableCell} align="right">Code</StyledTableCell>
                             <StyledTableCell className={classes.tableCell} align="right">Mid</StyledTableCell>
                             <StyledTableCell className={classes.tableCell} align="right">
-                                <Button variant='outlined' size='small' color='primary' className={classes.button} onClick={() => this.removeAllFavourite(favourite)}>Remove all</Button>
+                                <AlertDialog text='remove all' funct={() => this.removeAllFavourite} />  
+                                {/* <Button variant='outlined' size='small' color='primary' className={classes.button} onClick={() => this.removeAllFavourite(favourite)}>Remove all</Button> */}
                             </StyledTableCell>
                         </TableRow>
                     </TableHead>

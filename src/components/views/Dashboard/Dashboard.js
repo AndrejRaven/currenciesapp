@@ -12,9 +12,16 @@ const useStyles = makeStyles((theme) => ({
     },
     paper: {
       padding: theme.spacing(2),
+      paddingTop: '50%',
       textAlign: 'center',
       color: theme.palette.text.secondary,
-      minHeight: theme.spacing(15),
+      minHeight: '80vh',
+      justifyContent: 'center',
+      background: theme.palette.grey[200],
+      '&:hover': {
+        background: theme.palette.grey[300],
+      }, 
+      
     },
   }));
 
@@ -23,7 +30,7 @@ const Dashboard = () => {
 
   return (
     <div className={classes.root}>  
-    <Grid container spacing={3}>
+    <Grid container spacing={3} >
       <Grid item xs={12}>
         <Typography variant="h3" align="center">Welcome to currency app</Typography>
       </Grid>
