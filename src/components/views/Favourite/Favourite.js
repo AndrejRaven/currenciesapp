@@ -129,7 +129,7 @@ removeAllFavourite(){
                             <StyledTableCell className={classes.tableCell} align="right">Code</StyledTableCell>
                             <StyledTableCell className={classes.tableCell} align="right">Mid</StyledTableCell>
                             <StyledTableCell className={classes.tableCell} align="right">
-                                <AlertDialog text='remove all' funct={() => this.removeAllFavourite} />  
+                                <AlertDialog props={this.props} text='remove all' />  
                                 {/* <Button variant='outlined' size='small' color='primary' className={classes.button} onClick={() => this.removeAllFavourite(favourite)}>Remove all</Button> */}
                             </StyledTableCell>
                         </TableRow>

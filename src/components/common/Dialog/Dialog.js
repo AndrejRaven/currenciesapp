@@ -6,7 +6,7 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 
-const AlertDialog = ({text, funct }) => {
+const AlertDialog = ({ props, text} ) => {
   const [open, setOpen] = React.useState(false);
 
   const handleClickOpen = () => {
@@ -18,8 +18,7 @@ const AlertDialog = ({text, funct }) => {
   };
 
   const handleCloseAgree = () => {
-    console.log(this);  
-    funct();  
+    props.favourite.lenght = 0;
     setOpen(false); 
   };
 
