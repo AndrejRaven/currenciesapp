@@ -1,4 +1,4 @@
-import {combineReducers, createStore, applyMiddleware} from 'redux';
+import { combineReducers, createStore, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import currenciesReducer from './currenciesRedux';
@@ -9,22 +9,22 @@ const initialState = {
   currencies: {
     loading: {
       active: false,
-      error: false,
+      error: false
     },
     data: [],
-    favourite: [],
-  },
+    favourite: []
+  }
 };
 
 // define reducers
 const reducers = {
   currencies: currenciesReducer,
-  favourite: favouriteReducer,
+  favourite: favouriteReducer
 };
 
 // add blank reducers for initial state properties without reducers
-Object.keys(initialState).forEach(item => {
-  if (typeof reducers[item] == 'undefined') {
+Object.keys(initialState).forEach((item) => {
+  if (typeof reducers[item] === 'undefined') {
     reducers[item] = (statePart = null) => statePart;
   }
 });
@@ -35,9 +35,7 @@ const combinedReducers = combineReducers(reducers);
 const store = createStore(
   combinedReducers,
   initialState,
-  composeWithDevTools(
-    applyMiddleware(thunk)
-  )
+  composeWithDevTools(applyMiddleware(thunk))
 );
 
 export default store;

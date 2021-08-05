@@ -1,0 +1,43 @@
+  removeFromFavourite(currency) {
+    const arr = favourite;
+
+    if (!arr.includes(currency)) {
+      arr.push(currency);
+      this.props.removeFromFavourite(arr);
+      this.setState({ favourite: this.props.favourite });
+    } else {
+      const arr = this.props.favourite;
+      const currencyToRemove = arr.indexOf(currency);
+      arr.splice(currencyToRemove, 1);
+
+      this.props.removeFromFavourite(arr);
+      this.setState({ favourite: this.props.favourite });
+    }
+  }
+
+  removeAllFavourite() {
+    const arr = this.props.favourite;
+    arr.length = 0;
+    this.props.removeAllFavourite(arr);
+
+    this.setState({ favourite: arr });
+  }
+
+
+    addToFavourite(currency) {
+    const arr = this.props.favourite;
+
+    if (!arr.includes(currency)) {
+      arr.push(currency);
+      this.props.addToFavourite(arr);
+
+      this.setState({ favourite: this.props.favourite });
+    } else {
+      const currencyToRemove = arr.indexOf(currency);
+      arr.splice(currencyToRemove, 1);
+
+      this.props.addToFavourite(arr);
+
+      this.setState({ favourite: this.props.favourite });
+    }
+  }

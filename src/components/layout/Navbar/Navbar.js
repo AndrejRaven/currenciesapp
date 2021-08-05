@@ -16,7 +16,7 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
-import { NavLink} from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import AttachMoneyIcon from '@material-ui/icons/AttachMoney';
 
@@ -24,51 +24,51 @@ const drawerWidth = 240;
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    display: 'flex',
+    display: 'flex'
   },
   appBar: {
     zIndex: theme.zIndex.drawer + 1,
     transition: theme.transitions.create(['width', 'margin'], {
       easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.leavingScreen,
-    }),
+      duration: theme.transitions.duration.leavingScreen
+    })
   },
   appBarShift: {
     marginLeft: drawerWidth,
     width: `calc(100% - ${drawerWidth}px)`,
     transition: theme.transitions.create(['width', 'margin'], {
       easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.enteringScreen,
-    }),
+      duration: theme.transitions.duration.enteringScreen
+    })
   },
   menuButton: {
-    marginRight: 36,
+    marginRight: 36
   },
   hide: {
-    display: 'none',
+    display: 'none'
   },
   drawer: {
     width: drawerWidth,
     flexShrink: 0,
-    whiteSpace: 'nowrap',
+    whiteSpace: 'nowrap'
   },
   drawerOpen: {
     width: drawerWidth,
     transition: theme.transitions.create('width', {
       easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.enteringScreen,
-    }),
+      duration: theme.transitions.duration.enteringScreen
+    })
   },
   drawerClose: {
     transition: theme.transitions.create('width', {
       easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.leavingScreen,
+      duration: theme.transitions.duration.leavingScreen
     }),
     overflowX: 'hidden',
     width: theme.spacing(7) + 1,
     [theme.breakpoints.up('sm')]: {
-      width: theme.spacing(9) + 1,
-    },
+      width: theme.spacing(9) + 1
+    }
   },
   toolbar: {
     display: 'flex',
@@ -76,15 +76,15 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: 'flex-end',
     padding: theme.spacing(0, 1),
     // necessary for content to be below app bar
-    ...theme.mixins.toolbar,
+    ...theme.mixins.toolbar
   },
   content: {
     flexGrow: 1,
-    padding: theme.spacing(3),
-  },
+    padding: theme.spacing(3)
+  }
 }));
 
-const MainLayout = (props) =>  {
+const MainLayout = () => {
   const classes = useStyles();
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
@@ -103,7 +103,7 @@ const MainLayout = (props) =>  {
       <AppBar
         position="fixed"
         className={clsx(classes.appBar, {
-          [classes.appBarShift]: open,
+          [classes.appBarShift]: open
         })}
       >
         <Toolbar>
@@ -113,63 +113,92 @@ const MainLayout = (props) =>  {
             onClick={handleDrawerOpen}
             edge="start"
             className={clsx(classes.menuButton, {
-              [classes.hide]: open,
+              [classes.hide]: open
             })}
           >
             <MenuIcon />
           </IconButton>
-            <NavLink style={{ textDecoration: 'none', color: '#fff' }} to={`${process.env.PUBLIC_URL}/`} exact>
-              <Typography className='link' variant="h6" noWrap>
-                Currency App
-              </Typography>
-            </NavLink>  
+          <NavLink
+            style={{ textDecoration: 'none', color: '#fff' }}
+            to={`${process.env.PUBLIC_URL}/`}
+            exact
+          >
+            <Typography className="link" variant="h6" noWrap>
+              Currency App
+            </Typography>
+          </NavLink>
         </Toolbar>
       </AppBar>
       <Drawer
         variant="permanent"
         className={clsx(classes.drawer, {
           [classes.drawerOpen]: open,
-          [classes.drawerClose]: !open,
+          [classes.drawerClose]: !open
         })}
         classes={{
           paper: clsx({
             [classes.drawerOpen]: open,
-            [classes.drawerClose]: !open,
-          }),
+            [classes.drawerClose]: !open
+          })
         }}
       >
         <div className={classes.toolbar}>
           <IconButton onClick={handleDrawerClose}>
-            {theme.direction === 'rtl' ? <ChevronRightIcon /> : <ChevronLeftIcon />}
+            {theme.direction === 'rtl' ? (
+              <ChevronRightIcon />
+            ) : (
+              <ChevronLeftIcon />
+            )}
           </IconButton>
         </div>
         <Divider />
         <List>
-          <NavLink style={{ textDecoration: 'none', color: 'grey' }} activeStyle={{ color: 'red' }} to={`${process.env.PUBLIC_URL}/favourite`} exact>
+          <NavLink
+            style={{ textDecoration: 'none', color: 'grey' }}
+            activeStyle={{ color: 'red' }}
+            to={`${process.env.PUBLIC_URL}/favourite`}
+            exact
+          >
             <ListItem button>
-              <ListItemIcon>{<FavoriteIcon />}</ListItemIcon>
-              <ListItemText primary={'Favorite'} /> 
+              <ListItemIcon>
+                <FavoriteIcon />
+              </ListItemIcon>
+              <ListItemText primary="Favorite" />
             </ListItem>
-          </NavLink> 
-          <NavLink style={{ textDecoration: 'none', color: 'grey' }} activeStyle={{ color: 'gold' }} to={`${process.env.PUBLIC_URL}/currencies`} exact>
+          </NavLink>
+          <NavLink
+            style={{ textDecoration: 'none', color: 'grey' }}
+            activeStyle={{ color: 'gold' }}
+            to={`${process.env.PUBLIC_URL}/currencies`}
+            exact
+          >
             <ListItem button>
-              <ListItemIcon>{<AttachMoneyIcon />}</ListItemIcon>
-              <ListItemText primary={'Currencies'} />
+              <ListItemIcon>
+                <AttachMoneyIcon />
+              </ListItemIcon>
+              <ListItemText primary="Currencies" />
             </ListItem>
-          </NavLink>  
+          </NavLink>
         </List>
         <Divider />
-        <List> 
-          <NavLink style={{ textDecoration: 'none', color: 'grey' }} activeStyle={{ color: 'blue' }} to={`${process.env.PUBLIC_URL}/login`} exact>
+        <List>
+          <NavLink
+            style={{ textDecoration: 'none', color: 'grey' }}
+            activeStyle={{ color: 'blue' }}
+            to={`${process.env.PUBLIC_URL}/login`}
+            exact
+          >
             <ListItem button>
-              <ListItemIcon>{<ExitToAppIcon />}</ListItemIcon>
-              <ListItemText primary={'Logout'} />
+              <ListItemIcon>
+                <ExitToAppIcon />
+              </ListItemIcon>
+              <ListItemText primary="Logout" />
             </ListItem>
           </NavLink>
         </List>
       </Drawer>
     </div>
   );
-}
+};
 
 export default MainLayout;
