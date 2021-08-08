@@ -93,23 +93,23 @@ export default function reducer(statePart = [], action = {}) {
       };
     }
     case ADD_TO_FAVOURITE: {
-      const currency = action.payload;
-      const { favourite } = statePart;
-
       return {
         ...statePart,
-        favourite: favourite.push(currency)
+        favourite: [...statePart.favourite, action.payload]
       };
     }
     case REMOVE_FROM_FAVOURITE: {
-      const currency = action.payload;
-      const { favourite } = statePart;
-
-      favourite.splice(currency, 1);
-
       return {
         ...statePart,
-        favourite: currency
+        favourite: statePart.favourite.filter(
+          (currency) => currency !== action.payload
+        )
+      };
+    }
+    case REMOVE_ALL_FAVOURITE: {
+      return {
+        ...statePart,
+        favourite: []
       };
     }
     default:

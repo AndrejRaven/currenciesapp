@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 import React from 'react';
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 import Paper from '@material-ui/core/Paper';
 import {
   Grid,
@@ -14,7 +14,6 @@ import {
 } from '@material-ui/core/';
 import { withStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
-import AlertDialog from '../../common/Dialog/Dialog';
 
 const useStyles = (theme) => ({
   root: {
@@ -67,17 +66,11 @@ const StyledTableRow = withStyles((theme) => ({
 class Favourite extends React.Component {
   constructor(props) {
     super(props);
-    this.props = {
-      removeFromFavourite: props.removeFromFavourite,
-      favoriteProps: props.favorite
-    };
-    this.state = {
-      favourite: props.favourite
-    };
+    this.state = {};
   }
 
   render() {
-    const { favourite } = this.state;
+    const { favourite, removeAllFavourite, removeFromFavourite } = this.props;
     const classes = this.props;
 
     const Wrapper = (props) => (
@@ -111,7 +104,15 @@ class Favourite extends React.Component {
                   Mid
                 </StyledTableCell>
                 <StyledTableCell className={classes.tableCell} align="right">
-                  <AlertDialog props={this.props} text="remove all" />
+                  <Button
+                    variant="outlined"
+                    size="small"
+                    color="primary"
+                    className={classes.button}
+                    onClick={() => removeAllFavourite(favourite)}
+                  >
+                    Remove all
+                  </Button>
                 </StyledTableCell>
               </TableRow>
             </TableHead>
@@ -137,7 +138,7 @@ class Favourite extends React.Component {
                       size="small"
                       color="primary"
                       className={classes.button}
-                      onClick={() => this.removeFromFavourite(currency)}
+                      onClick={() => removeFromFavourite(currency)}
                     >
                       Remove
                     </Button>
@@ -151,22 +152,5 @@ class Favourite extends React.Component {
     );
   }
 }
-
-Favourite.propTypes = {
-  loading: PropTypes.shape({
-    active: PropTypes.bool,
-    error: PropTypes.oneOfType([PropTypes.bool, PropTypes.string]),
-    removeFromFavourite: PropTypes.func
-  })
-};
-
-Favourite.defaultProps = {
-  loading: PropTypes.shape({
-    active: PropTypes.bool,
-    error: PropTypes.oneOfType([PropTypes.bool, PropTypes.string]),
-    removeFromFavourite: PropTypes.func,
-    favourite: PropTypes.shape([])
-  })
-};
 
 export default withStyles(useStyles)(Favourite);

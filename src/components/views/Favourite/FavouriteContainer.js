@@ -3,7 +3,7 @@ import {
   removeFromFavourite,
   removeAllFavourite,
   getFavorite
-} from '../../../redux/favouriteRedux';
+} from '../../../redux/currenciesRedux';
 import Favourite from './Favourite';
 
 const mapStateToProps = (state) => ({
@@ -11,8 +11,7 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  removeFromFavourite: (currency) =>
-    dispatch(removeFromFavourite({ currency })),
+  removeFromFavourite: (currency) => dispatch(removeFromFavourite(currency)),
   removeAllFavourite: (currency) => dispatch(removeAllFavourite(currency))
 });
 

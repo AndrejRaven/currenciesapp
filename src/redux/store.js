@@ -2,7 +2,6 @@ import { combineReducers, createStore, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import currenciesReducer from './currenciesRedux';
-import favouriteReducer from './favouriteRedux';
 
 // define initial state and shallow-merge initial data
 const initialState = {
@@ -18,8 +17,7 @@ const initialState = {
 
 // define reducers
 const reducers = {
-  currencies: currenciesReducer,
-  favourite: favouriteReducer
+  currencies: currenciesReducer
 };
 
 // add blank reducers for initial state properties without reducers

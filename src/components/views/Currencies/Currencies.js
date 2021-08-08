@@ -64,13 +64,6 @@ const StyledTableRow = withStyles((theme) => ({
 }))(TableRow);
 
 class Currencies extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      favourite: props.favourite
-    };
-  }
-
   componentDidMount() {
     const { fetchCurrencies } = this.props;
     fetchCurrencies();
@@ -80,10 +73,10 @@ class Currencies extends React.Component {
     const {
       loading: { active, error },
       currencies,
+      favourite,
       addToFavourite,
       removeFromFavourite
     } = this.props;
-    const { favourite } = this.state;
     const classes = this.props;
 
     const Wrapper = (props) => (
