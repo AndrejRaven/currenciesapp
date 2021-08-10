@@ -4,7 +4,6 @@ import React from 'react';
 import Paper from '@material-ui/core/Paper';
 import {
   Grid,
-  Button,
   TableContainer,
   Table,
   TableHead,
@@ -14,6 +13,7 @@ import {
 } from '@material-ui/core/';
 import { withStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
+import AlertDialog from '../../common/Dialog/Dialog';
 
 const useStyles = (theme) => ({
   root: {
@@ -70,7 +70,7 @@ class Favourite extends React.Component {
   }
 
   render() {
-    const { favourite, removeAllFavourite, removeFromFavourite } = this.props;
+    const { favourite } = this.props;
     const classes = this.props;
 
     const Wrapper = (props) => (
@@ -104,15 +104,7 @@ class Favourite extends React.Component {
                   Mid
                 </StyledTableCell>
                 <StyledTableCell className={classes.tableCell} align="right">
-                  <Button
-                    variant="outlined"
-                    size="small"
-                    color="primary"
-                    className={classes.button}
-                    onClick={() => removeAllFavourite(favourite)}
-                  >
-                    Remove all
-                  </Button>
+                  <AlertDialog text="remove all" props={this.props} />
                 </StyledTableCell>
               </TableRow>
             </TableHead>
@@ -133,15 +125,11 @@ class Favourite extends React.Component {
                     {currency.mid} / zl{' '}
                   </StyledTableCell>
                   <StyledTableCell className={classes.tableCell} align="right">
-                    <Button
-                      variant="outlined"
-                      size="small"
-                      color="primary"
-                      className={classes.button}
-                      onClick={() => removeFromFavourite(currency)}
-                    >
-                      Remove
-                    </Button>
+                    <AlertDialog
+                      text="remove"
+                      props={this.props}
+                      currency={currency}
+                    />
                   </StyledTableCell>
                 </StyledTableRow>
               ))}

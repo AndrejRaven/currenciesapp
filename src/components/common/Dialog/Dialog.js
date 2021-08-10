@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import React from 'react';
 import Button from '@material-ui/core/Button';
 import Dialog from '@material-ui/core/Dialog';
@@ -5,10 +6,10 @@ import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
-import PropTypes from 'prop-types';
 
-const AlertDialog = ({ props, text }) => {
+const AlertDialog = ({ props, text, currency }) => {
   const [open, setOpen] = React.useState(false);
+  const { removeAllFavourite, removeFromFavourite } = props;
   const handleClickOpen = () => {
     setOpen(true);
   };
@@ -17,7 +18,11 @@ const AlertDialog = ({ props, text }) => {
   };
   const handleCloseAgree = () => {
     setOpen(false);
-    console.log(props);
+    if (text === 'remove all') {
+      removeAllFavourite();
+    } else if (text === 'remove') {
+      removeFromFavourite(currency);
+    }
   };
 
   return (
@@ -48,11 +53,6 @@ const AlertDialog = ({ props, text }) => {
       </Dialog>
     </div>
   );
-};
-
-AlertDialog.propTypes = {
-  text: PropTypes.string.isRequired,
-  props: PropTypes.node.isRequired
 };
 
 export default AlertDialog;

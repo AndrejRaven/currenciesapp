@@ -66,6 +66,7 @@ const StyledTableRow = withStyles((theme) => ({
 class Currencies extends React.Component {
   componentDidMount() {
     const { fetchCurrencies } = this.props;
+
     fetchCurrencies();
   }
 
