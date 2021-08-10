@@ -27,7 +27,12 @@ const AlertDialog = ({ props, text, currency }) => {
 
   return (
     <div>
-      <Button variant="outlined" color="primary" onClick={handleClickOpen}>
+      <Button
+        size="small"
+        variant="outlined"
+        color="primary"
+        onClick={handleClickOpen}
+      >
         {text}
       </Button>
       <Dialog
@@ -44,10 +49,10 @@ const AlertDialog = ({ props, text, currency }) => {
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose} color="primary">
-            Disagree
+            Cancel
           </Button>
           <Button onClick={handleCloseAgree} color="primary" autoFocus>
-            Agree
+            Confirm
           </Button>
         </DialogActions>
       </Dialog>
