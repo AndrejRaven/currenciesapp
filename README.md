@@ -14,3 +14,6 @@ To start this project you should have installed git, yarn and node in your pc :)
 
 note: first time it open it takes a moment to load
 
+If you want to see how it looks like, visit my heroku app https://ravencurrencyapp.herokuapp.com/
+
+Thank you for your attention
