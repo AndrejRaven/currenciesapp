@@ -81,6 +81,9 @@ const useStyles = makeStyles((theme) => ({
   content: {
     flexGrow: 1,
     padding: theme.spacing(3)
+  },
+  gold: {
+    background: theme.palette.grey[600]
   }
 }));
 
@@ -168,9 +171,9 @@ const MainLayout = () => {
           </NavLink>
           <NavLink
             style={{ textDecoration: 'none', color: 'grey' }}
-            activeStyle={{ color: 'gold' }}
-            to={`${process.env.PUBLIC_URL}/currencies`}
+            activeStyle={{ color: 'gold', borderBottom: '1px solid gold' }}
             exact
+            to={`${process.env.PUBLIC_URL}/currencies`}
           >
             <ListItem button>
               <ListItemIcon>
@@ -183,7 +186,10 @@ const MainLayout = () => {
         <Divider />
         <List>
           <NavLink
-            style={{ textDecoration: 'none', color: 'grey' }}
+            style={{
+              textDecoration: 'none',
+              color: 'grey'
+            }}
             activeStyle={{ color: 'blue' }}
             to={`${process.env.PUBLIC_URL}/login`}
             exact

@@ -1,11 +1,18 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import PropTypes from 'prop-types';
+import { BrowserView, MobileView } from 'react-device-detect';
 import Navbar from '../Navbar/Navbar';
+import MobileNavbar from '../Navbar/MobileNavbar';
+import MobileAppBar from '../Navbar/MobileAppBar';
 
 const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex'
+  },
+  rootMobile: {
+    display: 'flex',
+    flexDirection: 'column'
   },
   toolbar: {
     display: 'flex',
@@ -25,13 +32,23 @@ const MainLayout = ({ children }) => {
   const classes = useStyles();
 
   return (
-    <div className={classes.root}>
-      <Navbar />
-      <main className={classes.content}>
-        <div className={classes.toolbar} />
-        {children}
-      </main>
-    </div>
+    <>
+      <BrowserView className={classes.root}>
+        <Navbar />
+        <main className={classes.content}>
+          <div className={classes.toolbar} />
+          {children}
+        </main>
+      </BrowserView>
+      <MobileView className={classes.rootMobile}>
+        <MobileAppBar />
+        <main className={classes.content}>
+          <div className={classes.toolbar} />
+          {children}
+        </main>
+        <MobileNavbar />
+      </MobileView>
+    </>
   );
 };
 

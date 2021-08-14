@@ -34,14 +34,14 @@ const useStyles = (theme) => ({
   textField: {
     marginLeft: theme.spacing(1),
     marginRight: theme.spacing(1),
-    width: 200
+    width: '40%'
   },
   table: {
-    minWidth: 340
+    minWidth: '90%'
   },
   tableCell: {
-    paddingRight: 4,
-    paddingLeft: 5
+    paddingRight: theme.spacing(2),
+    paddingLeft: theme.spacing(3)
   }
 });
 
@@ -51,7 +51,7 @@ const StyledTableCell = withStyles((theme) => ({
     color: theme.palette.common.white
   },
   body: {
-    fontSize: 14
+    fontSize: '1.2rem'
   }
 }))(TableCell);
 
@@ -81,7 +81,7 @@ class Currencies extends React.Component {
     const classes = this.props;
 
     const Wrapper = (props) => (
-      <div className={classes.props}>
+      <div className={classes.root}>
         <Grid container spacing={3}>
           <Grid item xs={12}>
             <Typography variant="h3" align="center">
