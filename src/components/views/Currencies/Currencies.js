@@ -14,15 +14,19 @@ import {
 } from '@material-ui/core/';
 import { withStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
+import { BrowserView, MobileView } from 'react-device-detect';
 
 const useStyles = (theme) => ({
   root: {
-    flexGrow: 1
+    flexGrow: 2
   },
   paper: {
-    padding: theme.spacing(2),
+    padding: theme.spacing(1),
     textAlign: 'center',
-    color: theme.palette.text.secondary
+    color: theme.palette.text.secondary,
+    [theme.breakpoints.up('md')]: {
+      padding: theme.spacing(2)
+    }
   },
   button: {
     margin: '5%'
@@ -31,17 +35,19 @@ const useStyles = (theme) => ({
     display: 'flex',
     flexWrap: 'wrap'
   },
-  textField: {
-    marginLeft: theme.spacing(1),
-    marginRight: theme.spacing(1),
-    width: '40%'
-  },
   table: {
-    minWidth: '90%'
+    width: '80%',
+    minWidth: 240
   },
   tableCell: {
-    paddingRight: theme.spacing(2),
-    paddingLeft: theme.spacing(3)
+    paddingRight: 2,
+    paddingLeft: 3,
+    fontSize: 2,
+    [theme.breakpoints.up('md')]: {
+      paddingRight: 4,
+      paddingLeft: 5,
+      fontSize: 14
+    }
   }
 });
 
@@ -51,7 +57,10 @@ const StyledTableCell = withStyles((theme) => ({
     color: theme.palette.common.white
   },
   body: {
-    fontSize: '1.2rem'
+    fontSize: 10,
+    [theme.breakpoints.up('md')]: {
+      fontSize: 14
+    }
   }
 }))(TableCell);
 
@@ -82,7 +91,7 @@ class Currencies extends React.Component {
 
     const Wrapper = (props) => (
       <div className={classes.root}>
-        <Grid container spacing={3}>
+        <Grid container>
           <Grid item xs={12}>
             <Typography variant="h3" align="center">
               List of available currencies
@@ -112,66 +121,146 @@ class Currencies extends React.Component {
     }
     return (
       <Wrapper>
-        <TableContainer component={Paper}>
-          <Table className={classes.table} aria-label="customized table">
-            <TableHead>
-              <TableRow>
-                <StyledTableCell className={classes.tableCell}>
-                  Currency
-                </StyledTableCell>
-                <StyledTableCell className={classes.tableCell} align="right">
-                  Code
-                </StyledTableCell>
-                <StyledTableCell className={classes.tableCell} align="right">
-                  Mid
-                </StyledTableCell>
-                <StyledTableCell className={classes.tableCell} align="right" />
-              </TableRow>
-            </TableHead>
-            <TableBody>
-              {currencies.map((currency) => (
-                <StyledTableRow key={currency.code}>
+        <BrowserView>
+          <TableContainer component={Paper}>
+            <Table className={classes.table} aria-label="customized table">
+              <TableHead>
+                <TableRow>
+                  <StyledTableCell className={classes.tableCell}>
+                    Currency
+                  </StyledTableCell>
+                  <StyledTableCell className={classes.tableCell} align="right">
+                    Code
+                  </StyledTableCell>
+                  <StyledTableCell className={classes.tableCell} align="right">
+                    Mid
+                  </StyledTableCell>
                   <StyledTableCell
                     className={classes.tableCell}
-                    component="th"
-                    scope="row"
-                  >
-                    {currency.currency.toUpperCase()}
+                    align="right"
+                  />
+                </TableRow>
+              </TableHead>
+              <TableBody>
+                {currencies.map((currency) => (
+                  <StyledTableRow key={currency.code}>
+                    <StyledTableCell
+                      className={classes.tableCell}
+                      component="th"
+                      scope="row"
+                    >
+                      {currency.currency.toUpperCase()}
+                    </StyledTableCell>
+                    <StyledTableCell
+                      className={classes.tableCell}
+                      align="right"
+                    >
+                      {currency.code}
+                    </StyledTableCell>
+                    <StyledTableCell
+                      className={classes.tableCell}
+                      align="right"
+                    >
+                      {currency.mid} / zl
+                    </StyledTableCell>
+                    <StyledTableCell
+                      className={classes.tableCell}
+                      align="right"
+                    >
+                      {!favourite.includes(currency) ? (
+                        <Button
+                          variant="outlined"
+                          size="small"
+                          color="primary"
+                          className={classes.button}
+                          onClick={() => addToFavourite(currency)}
+                        >
+                          Add to favourite
+                        </Button>
+                      ) : (
+                        <Button
+                          variant="outlined"
+                          size="small"
+                          color="primary"
+                          className={classes.button}
+                          onClick={() => removeFromFavourite(currency)}
+                        >
+                          Remove
+                        </Button>
+                      )}
+                    </StyledTableCell>
+                  </StyledTableRow>
+                ))}
+              </TableBody>
+            </Table>
+          </TableContainer>
+        </BrowserView>
+
+        <MobileView>
+          <TableContainer component={Paper}>
+            <Table className={classes.table} aria-label="customized table">
+              <TableHead>
+                <TableRow>
+                  <StyledTableCell className={classes.tableCell}>
+                    Currency
                   </StyledTableCell>
                   <StyledTableCell className={classes.tableCell} align="right">
-                    {currency.code}
+                    Mid
                   </StyledTableCell>
-                  <StyledTableCell className={classes.tableCell} align="right">
-                    {currency.mid} / zl
-                  </StyledTableCell>
-                  <StyledTableCell className={classes.tableCell} align="right">
-                    {!favourite.includes(currency) ? (
-                      <Button
-                        variant="outlined"
-                        size="small"
-                        color="primary"
-                        className={classes.button}
-                        onClick={() => addToFavourite(currency)}
-                      >
-                        Add to favourite
-                      </Button>
-                    ) : (
-                      <Button
-                        variant="outlined"
-                        size="small"
-                        color="primary"
-                        className={classes.button}
-                        onClick={() => removeFromFavourite(currency)}
-                      >
-                        Remove
-                      </Button>
-                    )}
-                  </StyledTableCell>
-                </StyledTableRow>
-              ))}
-            </TableBody>
-          </Table>
-        </TableContainer>
+                  <StyledTableCell
+                    className={classes.tableCell}
+                    align="right"
+                  />
+                </TableRow>
+              </TableHead>
+              <TableBody>
+                {currencies.map((currency) => (
+                  <StyledTableRow key={currency.code}>
+                    <StyledTableCell
+                      className={classes.tableCell}
+                      component="th"
+                      scope="row"
+                    >
+                      {currency.currency.toUpperCase()}
+                    </StyledTableCell>
+                    <StyledTableCell
+                      className={classes.tableCell}
+                      align="right"
+                    >
+                      {currency.mid} / zl
+                    </StyledTableCell>
+                    <StyledTableCell
+                      className={classes.tableCell}
+                      align="right"
+                    >
+                      {!favourite.includes(currency) ? (
+                        <Button
+                          variant="outlined"
+                          size="small"
+                          color="primary"
+                          className={classes.button}
+                          onClick={() => addToFavourite(currency)}
+                        >
+                          Favourite
+                        </Button>
+                      ) : (
+                        <Button
+                          variant="outlined"
+                          size="small"
+                          color="primary"
+                          className={classes.button}
+                          onClick={() => removeFromFavourite(currency)}
+                        >
+                          Remove
+                        </Button>
+                      )}
+                    </StyledTableCell>
+                  </StyledTableRow>
+                ))}
+              </TableBody>
+            </Table>
+          </TableContainer>
+        </MobileView>
       </Wrapper>
     );
   }

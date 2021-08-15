@@ -31,17 +31,18 @@ const useStyles = (theme) => ({
     display: 'flex',
     flexWrap: 'wrap'
   },
-  textField: {
-    marginLeft: theme.spacing(1),
-    marginRight: theme.spacing(1),
-    width: 200
-  },
   table: {
     minWidth: 340
   },
   tableCell: {
-    paddingRight: 4,
-    paddingLeft: 5
+    paddingRight: 2,
+    paddingLeft: 3,
+    fontSize: 2,
+    [theme.breakpoints.up('md')]: {
+      paddingRight: 4,
+      paddingLeft: 5,
+      fontSize: 14
+    }
   }
 });
 
@@ -51,7 +52,10 @@ const StyledTableCell = withStyles((theme) => ({
     color: theme.palette.common.white
   },
   body: {
-    fontSize: 14
+    fontSize: 10,
+    [theme.breakpoints.up('md')]: {
+      fontSize: 14
+    }
   }
 }))(TableCell);
 
@@ -98,9 +102,6 @@ class Favourite extends React.Component {
                   Currency
                 </StyledTableCell>
                 <StyledTableCell className={classes.tableCell} align="right">
-                  Code
-                </StyledTableCell>
-                <StyledTableCell className={classes.tableCell} align="right">
                   Mid
                 </StyledTableCell>
                 <StyledTableCell className={classes.tableCell} align="right">
@@ -117,9 +118,6 @@ class Favourite extends React.Component {
                     scope="row"
                   >
                     {currency.currency.toUpperCase()}
-                  </StyledTableCell>
-                  <StyledTableCell className={classes.tableCell} align="right">
-                    {currency.code}
                   </StyledTableCell>
                   <StyledTableCell className={classes.tableCell} align="right">
                     {currency.mid} / zl{' '}
