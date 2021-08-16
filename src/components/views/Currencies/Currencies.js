@@ -18,10 +18,10 @@ import { BrowserView, MobileView } from 'react-device-detect';
 
 const useStyles = (theme) => ({
   root: {
-    flexGrow: 2
+    flexGrow: 1
   },
   paper: {
-    padding: theme.spacing(1),
+    padding: theme.spacing(0.5),
     textAlign: 'center',
     color: theme.palette.text.secondary,
     [theme.breakpoints.up('md')]: {
@@ -29,15 +29,17 @@ const useStyles = (theme) => ({
     }
   },
   button: {
-    margin: '5%'
+    margin: '2%',
+    [theme.breakpoints.up('md')]: {
+      margin: '5%'
+    }
   },
   container: {
     display: 'flex',
     flexWrap: 'wrap'
   },
   table: {
-    width: '80%',
-    minWidth: 240
+    minWidth: 340
   },
   tableCell: {
     paddingRight: 2,
@@ -225,13 +227,13 @@ class Currencies extends React.Component {
                     </StyledTableCell>
                     <StyledTableCell
                       className={classes.tableCell}
-                      align="right"
+                      align="center"
                     >
                       {currency.mid} / zl
                     </StyledTableCell>
                     <StyledTableCell
                       className={classes.tableCell}
-                      align="right"
+                      align="center"
                     >
                       {!favourite.includes(currency) ? (
                         <Button
