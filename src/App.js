@@ -14,26 +14,10 @@ function App() {
       <BrowserRouter basename="/">
         <MainLayout>
           <Switch>
-            <Route
-              exact
-              path={`${process.env.PUBLIC_URL}/`}
-              component={Dashboard}
-            />
-            <Route
-              exact
-              path={`${process.env.PUBLIC_URL}/currencies`}
-              component={CurrenciesContainer}
-            />
-            <Route
-              exact
-              path={`${process.env.PUBLIC_URL}/favourite`}
-              component={FavouriteContainer}
-            />
-            <Route
-              exact
-              path={`${process.env.PUBLIC_URL}/login`}
-              component={Login}
-            />
+            <Route exact path="/" component={Dashboard} />
+            <Route exact path="/currencies" component={CurrenciesContainer} />
+            <Route exact path="/favourite" component={FavouriteContainer} />
+            <Route exact path="/login" component={Login} />
           </Switch>
         </MainLayout>
       </BrowserRouter>

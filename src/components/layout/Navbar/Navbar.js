@@ -123,7 +123,7 @@ const MainLayout = () => {
           </IconButton>
           <NavLink
             style={{ textDecoration: 'none', color: '#fff' }}
-            to={`${process.env.PUBLIC_URL}/`}
+            to="/"
             exact
           >
             <Typography className="link" variant="h6" noWrap>
@@ -159,7 +159,7 @@ const MainLayout = () => {
           <NavLink
             style={{ textDecoration: 'none', color: 'grey' }}
             activeStyle={{ color: 'red' }}
-            to={`${process.env.PUBLIC_URL}/favourite`}
+            to="/favourite"
             exact
           >
             <ListItem button>
@@ -173,7 +173,7 @@ const MainLayout = () => {
             style={{ textDecoration: 'none', color: 'grey' }}
             activeStyle={{ color: 'gold', borderBottom: '1px solid gold' }}
             exact
-            to={`${process.env.PUBLIC_URL}/currencies`}
+            to="/currencies"
           >
             <ListItem button>
               <ListItemIcon>
@@ -191,7 +191,7 @@ const MainLayout = () => {
               color: 'grey'
             }}
             activeStyle={{ color: 'blue' }}
-            to={`${process.env.PUBLIC_URL}/login`}
+            to="/login"
             exact
           >
             <ListItem button>

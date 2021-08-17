@@ -42,8 +42,8 @@ const useStyles = (theme) => ({
     minWidth: 340
   },
   tableCell: {
-    paddingRight: 2,
-    paddingLeft: 3,
+    paddingRight: 1,
+    paddingLeft: 2,
     fontSize: 2,
     [theme.breakpoints.up('md')]: {
       paddingRight: 4,
@@ -60,6 +60,7 @@ const StyledTableCell = withStyles((theme) => ({
   },
   body: {
     fontSize: 10,
+    padding: theme.spacing(1),
     [theme.breakpoints.up('md')]: {
       fontSize: 14
     }

@@ -19,12 +19,15 @@ const useStyles = (theme) => ({
     flexGrow: 1
   },
   paper: {
-    padding: theme.spacing(2),
+    padding: theme.spacing(1),
     textAlign: 'center',
     color: theme.palette.text.secondary
   },
   button: {
-    margin: '5%'
+    margin: '2%',
+    [theme.breakpoints.up('md')]: {
+      margin: '5%'
+    }
   },
   container: {
     display: 'flex',
@@ -34,8 +37,8 @@ const useStyles = (theme) => ({
     minWidth: 340
   },
   tableCell: {
-    paddingRight: 2,
-    paddingLeft: 3,
+    paddingRight: 1,
+    paddingLeft: 2,
     fontSize: 2,
     [theme.breakpoints.up('md')]: {
       paddingRight: 4,
@@ -48,10 +51,12 @@ const useStyles = (theme) => ({
 const StyledTableCell = withStyles((theme) => ({
   head: {
     backgroundColor: theme.palette.common.black,
-    color: theme.palette.common.white
+    color: theme.palette.common.white,
+    padding: theme.spacing(1)
   },
   body: {
     fontSize: 10,
+    padding: theme.spacing(1),
     [theme.breakpoints.up('md')]: {
       fontSize: 14
     }
@@ -77,8 +82,8 @@ class Favourite extends React.Component {
     const classes = this.props;
 
     const Wrapper = (props) => (
-      <div className={classes.props}>
-        <Grid container spacing={3}>
+      <div className={classes.root}>
+        <Grid container>
           <Grid item xs={12}>
             <Typography variant="h3" align="center">
               List of favourite currencies
