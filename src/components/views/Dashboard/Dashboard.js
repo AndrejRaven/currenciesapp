@@ -34,6 +34,11 @@ const useStyles = makeStyles((theme) => ({
         background: theme.palette.grey[300]
       }
     }
+  },
+  wrapper: {
+    background: `url("https://i.postimg.cc/YCw4psqN/pexels-karolina-grabowska-4040857.jpg")`,
+    width: '100%',
+    height: '100vh'
   }
 }));
 
@@ -88,7 +93,13 @@ const Dashboard = () => {
         </Grid>
       </BrowserView>
       <MobileView>
-        <Grid container spacing={3}>
+        <Grid
+          container
+          spacing={2}
+          alignItems="center"
+          justifyContent="center"
+          style={{ paddingTop: '30%' }}
+        >
           <Grid item xs={12}>
             <Typography variant="h3" align="center">
               Welcome
@@ -96,11 +107,13 @@ const Dashboard = () => {
           </Grid>
           <Grid item xs={12}>
             <Typography variant="h5" align="center">
-              This is my currency app that fetching actual exchange cources of
-              polish zloty from national polish bank api. In this simple app I
-              use React, redux, materila ui,axios and more. You see this text
-              only in mobile device. For more comfoltable user expirience please
-              use desktop.
+              This is a simple currency app that fetching actual exchange
+              cources of polish zloty from national polish bank api. It was made
+              with react-redux stack powered by material-ui. In the bottom of
+              this page you can see three buttons. Currencies currencies from
+              api. Favourite is your chosen favourite currencies. And Login page
+              for login. There are two version of this react app, mobile and
+              desktop.
             </Typography>
           </Grid>
         </Grid>
