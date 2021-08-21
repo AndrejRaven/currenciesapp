@@ -38,14 +38,14 @@ const MobileNavbar = () => {
       <BottomNavigationAction
         component={NavLink}
         to={`${process.env.PUBLIC_URL}/favourite`}
-        label="Favorite"
+        label="Favourite"
         value="/favourite"
         icon={<FavoriteIcon />}
       />
       <BottomNavigationAction
         component={NavLink}
         to={`${process.env.PUBLIC_URL}/login`}
-        label="Logout"
+        label="Login"
         value="/login"
         icon={<ExitToAppIcon />}
       />

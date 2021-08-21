@@ -105,7 +105,7 @@ const Dashboard = () => {
               <Paper className={classes.paper}>
                 <ExitToAppIcon fontSize="large" />
                 <Typography variant="h5" align="center">
-                  Logout
+                  Login
                 </Typography>
               </Paper>
             </Link>
@@ -136,7 +136,7 @@ const Dashboard = () => {
               startDelay={2000}
               cursorColor="#3F3D56"
               multiText={[
-                'This is a simple currency app that fetching actual exchange cources of polish zloty from national polish bank api. It was made with react-redux stack powered by material-ui. In the bottom of this page you can see three buttons. Currencies currencies from api. Favourite is your chosen favourite currencies. And Login page for login. There are two version of this react app, mobile and desktop.'
+                'This is a simple currency app that fetching actual exchange cources of polish zloty from national polish bank API. It was made with react-redux stack powered by material-ui. At the bottom of this page you can see three buttons. Currencies - all currencies from API, favourite - your chosen favourite currencies, and Login page for login. There are two version of this react app: mobile and desktop.'
               ]}
               multiTextDelay={1000}
               typeSpeed={50}
