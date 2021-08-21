@@ -6,6 +6,7 @@ import FavoriteIcon from '@material-ui/icons/Favorite';
 import AttachMoneyIcon from '@material-ui/icons/AttachMoney';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import { BrowserView, MobileView } from 'react-device-detect';
+import TypeWriterEffect from 'react-typewriter-effect';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -36,9 +37,27 @@ const useStyles = makeStyles((theme) => ({
     }
   },
   wrapper: {
-    background: `url("https://i.postimg.cc/YCw4psqN/pexels-karolina-grabowska-4040857.jpg")`,
     width: '100%',
-    height: '100vh'
+    height: '80vh',
+    '&::before': {
+      content: '""',
+      position: 'absolute',
+      width: '100%',
+      height: '110%',
+      marginTop: '-10%',
+      zIndex: '-1',
+      background: `url("https://i.postimg.cc/YCw4psqN/pexels-karolina-grabowska-4040857.jpg") 50%`,
+      filter: 'brightness(75%)'
+    }
+  },
+  text: {
+    position: 'static',
+    height: '80%'
+  },
+  header: {
+    color: '#FFFFFF',
+    marginTop: '10%',
+    fontFamily: 'Red Hat Display'
   }
 }));
 
@@ -95,26 +114,32 @@ const Dashboard = () => {
       <MobileView>
         <Grid
           container
-          spacing={2}
-          alignItems="center"
+          alignItems="flex-start"
           justifyContent="center"
-          style={{ paddingTop: '30%' }}
+          alignContent="space-between"
+          className={classes.wrapper}
         >
           <Grid item xs={12}>
-            <Typography variant="h3" align="center">
+            <Typography variant="h3" align="center" className={classes.header}>
               Welcome
             </Typography>
           </Grid>
-          <Grid item xs={12}>
-            <Typography variant="h5" align="center">
-              This is a simple currency app that fetching actual exchange
-              cources of polish zloty from national polish bank api. It was made
-              with react-redux stack powered by material-ui. In the bottom of
-              this page you can see three buttons. Currencies currencies from
-              api. Favourite is your chosen favourite currencies. And Login page
-              for login. There are two version of this react app, mobile and
-              desktop.
-            </Typography>
+          <Grid item xs={10} className={classes.text}>
+            <TypeWriterEffect
+              textStyle={{
+                fontFamily: 'Red Hat Display',
+                color: '#FFFFFF',
+                fontWeight: 500,
+                fontSize: '1.5em'
+              }}
+              startDelay={2000}
+              cursorColor="#3F3D56"
+              multiText={[
+                'This is a simple currency app that fetching actual exchange cources of polish zloty from national polish bank api. It was made with react-redux stack powered by material-ui. In the bottom of this page you can see three buttons. Currencies currencies from api. Favourite is your chosen favourite currencies. And Login page for login. There are two version of this react app, mobile and desktop.'
+              ]}
+              multiTextDelay={1000}
+              typeSpeed={50}
+            />
           </Grid>
         </Grid>
       </MobileView>
