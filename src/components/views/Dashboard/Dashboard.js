@@ -47,6 +47,7 @@ const useStyles = makeStyles((theme) => ({
       marginTop: '-10%',
       zIndex: '-1',
       background: `url("https://i.postimg.cc/YCw4psqN/pexels-karolina-grabowska-4040857.jpg") 50%`,
+      backgroundSize: 'cover',
       filter: 'brightness(75%)'
     }
   },
