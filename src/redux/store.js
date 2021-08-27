@@ -1,6 +1,7 @@
 import { combineReducers, createStore, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
 import { composeWithDevTools } from 'redux-devtools-extension';
+import { firebaseReducer } from 'react-redux-firebase';
 import currenciesReducer from './currenciesRedux';
 
 // define initial state and shallow-merge initial data
@@ -17,7 +18,8 @@ const initialState = {
 
 // define reducers
 const reducers = {
-  currencies: currenciesReducer
+  currencies: currenciesReducer,
+  firebase: firebaseReducer
 };
 
 // add blank reducers for initial state properties without reducers
