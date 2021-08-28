@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import Link from '@material-ui/core/Link';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
@@ -48,6 +48,19 @@ const useStyles = makeStyles((theme) => ({
 
 const Login = () => {
   const classes = useStyles();
+  const emailRef = useRef('');
+  const passwordRef = useRef('');
+  // eslint-disable-next-line react/prop-types
+  // const { signIn } = props;
+  // const creds = {
+  //   email: 'test@q.com',
+  //   password: '123456'
+  // };
+
+  const sendValue = () => {
+    console.log(emailRef.current.value);
+    console.log(passwordRef.current.value);
+  };
 
   return (
     <Container component="main" maxWidth="xs">
@@ -59,7 +72,7 @@ const Login = () => {
         <Typography component="h1" variant="h5">
           Sign in
         </Typography>
-        <form className={classes.form} noValidate>
+        <form className={classes.form}>
           <TextField
             variant="outlined"
             margin="normal"
@@ -68,6 +81,7 @@ const Login = () => {
             id="email"
             label="Email Address"
             name="email"
+            inputRef={emailRef}
             autoComplete="email"
           />
           <TextField
@@ -79,6 +93,7 @@ const Login = () => {
             label="Password"
             type="password"
             id="password"
+            inputRef={passwordRef}
             autoComplete="current-password"
           />
           <FormControlLabel
@@ -91,6 +106,7 @@ const Login = () => {
             variant="contained"
             color="primary"
             className={classes.submit}
+            onClick={() => sendValue()}
           >
             Sign In
           </Button>

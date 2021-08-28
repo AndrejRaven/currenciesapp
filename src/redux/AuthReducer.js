@@ -12,7 +12,6 @@ const LOGIN_ERROR = createActionName('LOGIN_ERROR');
 export const signIn = (credentials) => {
   return (dispatch, getState, { getFirebase }) => {
     const firebase = getFirebase();
-
     firebase
       .auth()
       .signInWithEmailAndPassword(credentials.email, credentials.password)
@@ -29,12 +28,14 @@ export const signIn = (credentials) => {
 export default function reducer(statePart = [], action = {}) {
   switch (action.type) {
     case LOGIN_SUCCESS: {
+      console.log('login succes');
       return {
         ...statePart,
         authError: null
       };
     }
     case LOGIN_ERROR: {
+      console.log('login error');
       return {
         ...statePart,
         authError: 'Login error'

@@ -1,8 +1,10 @@
 import { combineReducers, createStore, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
 import { composeWithDevTools } from 'redux-devtools-extension';
-import { firebaseReducer } from 'react-redux-firebase';
+import { firebaseReducer, getFirebase } from 'react-redux-firebase';
+import { firestoreReducer } from 'redux-firestore';
 import currenciesReducer from './currenciesRedux';
+import authReducer from './authReducer';
 
 // define initial state and shallow-merge initial data
 const initialState = {
@@ -19,7 +21,9 @@ const initialState = {
 // define reducers
 const reducers = {
   currencies: currenciesReducer,
-  firebase: firebaseReducer
+  firebase: firebaseReducer,
+  firestore: firestoreReducer,
+  auth: authReducer
 };
 
 // add blank reducers for initial state properties without reducers
@@ -35,7 +39,7 @@ const combinedReducers = combineReducers(reducers);
 const store = createStore(
   combinedReducers,
   initialState,
-  composeWithDevTools(applyMiddleware(thunk))
+  composeWithDevTools(applyMiddleware(thunk.withExtraArgument({ getFirebase })))
 );
 
 export default store;

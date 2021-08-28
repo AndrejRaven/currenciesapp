@@ -2,18 +2,20 @@
 import React from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import { Provider } from 'react-redux';
+import * as firebase from 'firebase';
 import { ReactReduxFirebaseProvider } from 'react-redux-firebase';
-import * as firebase from 'firebase/app';
 import MainLayout from './components/layout/MainLayout/MainLayout';
 import store from './redux/store';
 import Dashboard from './components/views/Dashboard/Dashboard';
 import CurrenciesContainer from './components/views/Currencies/CurrenciesContainer';
 import FavouriteContainer from './components/views/Favourite/FavouriteContainer';
-import Login from './components/views/Login/Login';
+import LoginContainer from './components/views/Login/LoginContainer';
 
 const firebaseConfig = {
   apiKey: 'AIzaSyDJPzvpEdvA9bleHO-zGihhH_bKj2R9JkA',
   authDomain: 'currencyapp-81587.firebaseapp.com',
+  databaseURL:
+    'https://currencyapp-81587-default-rtdb.europe-west1.firebasedatabase.app',
   projectId: 'currencyapp-81587',
   storageBucket: 'currencyapp-81587.appspot.com',
   messagingSenderId: '170161421311',
@@ -21,15 +23,15 @@ const firebaseConfig = {
   measurementId: 'G-DPVF05H2H9'
 };
 
-const rrfConfig = {
-  userProfile: 'users'
-};
-
-firebase.initializeApp(firebaseConfig);
+if (!firebase.apps.length) {
+  firebase.initializeApp(firebaseConfig);
+} else {
+  firebase.app(); // if already initialized, use that one
+}
 
 const rrfProps = {
   firebase,
-  config: rrfConfig,
+  config: {},
   dispatch: store.dispatch
   // createFirestoreInstance // <- needed if using firestore
 };
@@ -44,7 +46,7 @@ function App() {
               <Route exact path="/" component={Dashboard} />
               <Route exact path="/currencies" component={CurrenciesContainer} />
               <Route exact path="/favourite" component={FavouriteContainer} />
-              <Route exact path="/login" component={Login} />
+              <Route exact path="/login" component={LoginContainer} />
             </Switch>
           </MainLayout>
         </BrowserRouter>
