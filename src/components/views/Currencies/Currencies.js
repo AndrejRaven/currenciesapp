@@ -93,12 +93,12 @@ class Currencies extends React.Component {
 
   render() {
     const {
-      loading: { active, error },
+      loading: { error },
       currencies,
       favourite,
       addToFavourite,
       removeFromFavourite,
-      searchPhrase
+      filters
     } = this.props;
     const classes = this.props;
 
@@ -117,13 +117,6 @@ class Currencies extends React.Component {
       </div>
     );
 
-    if (active || !currencies.length) {
-      return (
-        <Wrapper>
-          <p>Loading...</p>
-        </Wrapper>
-      );
-    }
     if (error) {
       return (
         <Wrapper>
@@ -153,10 +146,11 @@ class Currencies extends React.Component {
                       <Input
                         style={{ background: 'white', paddingLeft: '3%' }}
                         placeholder="Search"
-                        onChange={(event) =>
-                          this.handleSearch(event.currentTarget.value)
-                        }
-                        value={searchPhrase}
+                        autoFocus
+                        onChange={(event) => {
+                          this.handleSearch(event.currentTarget.value);
+                        }}
+                        value={filters.searchPhrase}
                         inputProps={{ 'aria-label': 'description' }}
                       />
                     </form>

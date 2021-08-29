@@ -10,7 +10,7 @@ import {
 import {
   getAllFilters,
   changeSearchPhrase
-} from '../../../redux/filterReducer';
+} from '../../../redux/filtersReducer';
 import Currencies from './Currencies';
 
 const mapStateToProps = (state) => ({
