@@ -10,6 +10,7 @@ import Dashboard from './components/views/Dashboard/Dashboard';
 import CurrenciesContainer from './components/views/Currencies/CurrenciesContainer';
 import FavouriteContainer from './components/views/Favourite/FavouriteContainer';
 import LoginContainer from './components/views/Login/LoginContainer';
+import SignUpContainer from './components/views/SignUp/SignUpContainer';
 
 const firebaseConfig = {
   apiKey: 'AIzaSyDJPzvpEdvA9bleHO-zGihhH_bKj2R9JkA',
@@ -47,6 +48,7 @@ function App() {
               <Route exact path="/currencies" component={CurrenciesContainer} />
               <Route exact path="/favourite" component={FavouriteContainer} />
               <Route exact path="/login" component={LoginContainer} />
+              <Route exact path="/signUp" component={SignUpContainer} />
             </Switch>
           </MainLayout>
         </BrowserRouter>

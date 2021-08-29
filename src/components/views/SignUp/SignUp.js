@@ -4,9 +4,6 @@ import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import TextField from '@material-ui/core/TextField';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Checkbox from '@material-ui/core/Checkbox';
-import Grid from '@material-ui/core/Grid';
 import Box from '@material-ui/core/Box';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
@@ -50,12 +47,12 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-const Login = (props) => {
+const SignUp = (props) => {
   const classes = useStyles();
   const emailRef = useRef('');
   const passwordRef = useRef('');
   // eslint-disable-next-line react/prop-types
-  const { signIn, signOut, uid, email, authError } = props;
+  const { signUp, signOut, uid, email, authError } = props;
   if (uid)
     return (
       <Container component="main" maxWidth="xs">
@@ -92,7 +89,7 @@ const Login = (props) => {
           <LockOutlinedIcon />
         </Avatar>
         <Typography component="h1" variant="h5">
-          Sign in
+          Sign up
         </Typography>
         <form className={classes.form}>
           <TextField
@@ -118,10 +115,6 @@ const Login = (props) => {
             inputRef={passwordRef}
             autoComplete="current-password"
           />
-          <FormControlLabel
-            control={<Checkbox value="remember" color="primary" />}
-            label="Remember me"
-          />
           <Button
             type="submit"
             fullWidth
@@ -130,26 +123,14 @@ const Login = (props) => {
             className={classes.submit}
             onClick={(e) => {
               e.preventDefault();
-              signIn(emailRef.current.value, passwordRef.current.value);
+              signUp(emailRef.current.value, passwordRef.current.value);
             }}
           >
-            Sign In
+            Sign up
           </Button>
           <Box mt={2} className={classes.error}>
             {authError ? <p> {authError} </p> : null}
           </Box>
-          <Grid container>
-            <Grid item xs>
-              <Link href="#fw" variant="body2">
-                Forgot password?
-              </Link>
-            </Grid>
-            <Grid item>
-              <Link href="/signUp" variant="body2">
-                Dont have an account? Sign Up
-              </Link>
-            </Grid>
-          </Grid>
         </form>
       </div>
       <Box mt={8}>
@@ -159,4 +140,4 @@ const Login = (props) => {
   );
 };
 
-export default Login;
+export default SignUp;

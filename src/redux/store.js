@@ -15,7 +15,8 @@ const initialState = {
     },
     data: [],
     favourite: []
-  }
+  },
+  authError: null
 };
 
 // define reducers

@@ -1,5 +1,3 @@
-/* selectors */
-
 /* action name creator */
 const reducerName = 'auth';
 const createActionName = (name) => `app/${reducerName}/${name}`;
@@ -7,19 +5,58 @@ const createActionName = (name) => `app/${reducerName}/${name}`;
 /* action types */
 const LOGIN_SUCCESS = createActionName('LOGIN_SUCCESS');
 const LOGIN_ERROR = createActionName('LOGIN_ERROR');
+const SIGN_OUT = createActionName('SIGN_OUT');
+const SIGN_UP = createActionName('SIGN_UP');
+const SIGN_UP_ERR = createActionName('SIGN_UP_ERR');
 
 /* action creators */
-export const signIn = (credentials) => {
+export const loginError = (payload) => ({ payload, type: LOGIN_ERROR });
+export const loginSuccess = (payload) => ({ payload, type: LOGIN_SUCCESS });
+export const logOut = (payload) => ({ payload, type: SIGN_OUT });
+export const signingUp = (payload) => ({ payload, type: SIGN_UP });
+export const SingingUpError = (payload) => ({ payload, type: SIGN_UP_ERR });
+
+/* selectors */
+export const signIn = (email, password) => {
   return (dispatch, getState, { getFirebase }) => {
     const firebase = getFirebase();
     firebase
       .auth()
-      .signInWithEmailAndPassword(credentials.email, credentials.password)
+      .signInWithEmailAndPassword(email, password)
       .then(() => {
-        dispatch({ type: 'LOGIN_SUCCESS' });
+        dispatch(loginSuccess());
       })
       .catch((err) => {
-        dispatch({ type: 'LOGIN_ERROR', err });
+        dispatch(loginError(err.message || true));
+      });
+  };
+};
+
+export const signOut = () => {
+  return (dispatch, getState, { getFirebase }) => {
+    const firebase = getFirebase();
+
+    firebase
+      .auth()
+      .signOut()
+      .then(() => {
+        dispatch(logOut());
+      });
+  };
+};
+
+export const signUp = (email, password) => {
+  return (dispatch, getState, { getFirebase }) => {
+    const firebase = getFirebase();
+
+    firebase
+      .auth()
+      .createUserWithEmailAndPassword(email, password)
+      .then(() => {
+        dispatch(signingUp());
+      })
+      .catch((err) => {
+        dispatch(SingingUpError(err.message || true));
       });
   };
 };
@@ -35,12 +72,25 @@ export default function reducer(statePart = [], action = {}) {
       };
     }
     case LOGIN_ERROR: {
-      console.log('login error');
+      console.log('auth error');
       return {
         ...statePart,
-        authError: 'Login error'
+        authError: action.payload
       };
     }
+    case SIGN_OUT: {
+      console.log('You signed out..');
+      return statePart;
+    }
+    case SIGN_UP:
+      console.log('Welcome..');
+      return statePart;
+    case SIGN_UP_ERR:
+      console.log('Sign up error...');
+      return {
+        ...statePart,
+        authError: action.payload
+      };
     default:
       return statePart;
   }
