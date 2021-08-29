@@ -5,6 +5,7 @@ import { firebaseReducer, getFirebase } from 'react-redux-firebase';
 import { firestoreReducer } from 'redux-firestore';
 import currenciesReducer from './currenciesRedux';
 import authReducer from './authReducer';
+import filterReducer from './filterReducer';
 
 // define initial state and shallow-merge initial data
 const initialState = {
@@ -16,7 +17,10 @@ const initialState = {
     data: [],
     favourite: []
   },
-  authError: null
+  authError: null,
+  filters: {
+    searchPhrase: ''
+  }
 };
 
 // define reducers
@@ -24,7 +28,8 @@ const reducers = {
   currencies: currenciesReducer,
   firebase: firebaseReducer,
   firestore: firestoreReducer,
-  auth: authReducer
+  auth: authReducer,
+  filter: filterReducer
 };
 
 // add blank reducers for initial state properties without reducers

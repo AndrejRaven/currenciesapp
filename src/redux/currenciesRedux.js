@@ -5,6 +5,16 @@ import api from '../settings';
 export const getAllCurrencies = ({ currencies }) => currencies.data;
 export const getCurrenciesLoadingState = ({ currencies }) => currencies.loading;
 export const getFavorite = ({ currencies }) => currencies.favourite;
+export const getFilteredCurrencies = ({ currencies, filters }) => {
+  let output = currencies.data;
+
+  if (filters.searchPhrase) {
+    const pattern = new RegExp(filters.searchPhrase, 'i');
+    output = output.filter((currency) => pattern.test(currency.currency));
+  }
+
+  return output;
+};
 
 /* action name creator */
 const reducerName = 'currencies';
@@ -17,7 +27,6 @@ const FETCH_ALL_ERROR = createActionName('FETCH_ALL_ERROR');
 const ADD_TO_FAVOURITE = createActionName('ADD_TO_FAVOURITE');
 const REMOVE_FROM_FAVOURITE = createActionName('REMOVE_FROM_FAVOURITE');
 const REMOVE_ALL_FAVOURITE = createActionName('REMOVE_ALL_FAVOURITE');
-
 /* action creators */
 export const fetchCurrenciesStarted = (payload) => ({
   payload,

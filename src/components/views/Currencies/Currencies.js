@@ -15,6 +15,7 @@ import {
 import { withStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import { BrowserView, MobileView } from 'react-device-detect';
+import Input from '@material-ui/core/Input';
 
 const useStyles = (theme) => ({
   root: {
@@ -50,6 +51,9 @@ const useStyles = (theme) => ({
       paddingLeft: 5,
       fontSize: 14
     }
+  },
+  search: {
+    background: theme.palette.grey[300]
   }
 });
 
@@ -82,13 +86,19 @@ class Currencies extends React.Component {
     fetchCurrencies();
   }
 
+  handleSearch(phrase) {
+    const { changeSearchPhrase } = this.props;
+    changeSearchPhrase(phrase);
+  }
+
   render() {
     const {
       loading: { active, error },
       currencies,
       favourite,
       addToFavourite,
-      removeFromFavourite
+      removeFromFavourite,
+      searchPhrase
     } = this.props;
     const classes = this.props;
 
@@ -138,10 +148,19 @@ class Currencies extends React.Component {
                   <StyledTableCell className={classes.tableCell} align="right">
                     Mid
                   </StyledTableCell>
-                  <StyledTableCell
-                    className={classes.tableCell}
-                    align="right"
-                  />
+                  <StyledTableCell className={classes.tableCell} align="right">
+                    <form noValidate autoComplete="off">
+                      <Input
+                        style={{ background: 'white', paddingLeft: '3%' }}
+                        placeholder="Search"
+                        onChange={(event) =>
+                          this.handleSearch(event.currentTarget.value)
+                        }
+                        value={searchPhrase}
+                        inputProps={{ 'aria-label': 'description' }}
+                      />
+                    </form>
+                  </StyledTableCell>
                 </TableRow>
               </TableHead>
               <TableBody>

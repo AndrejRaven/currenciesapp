@@ -2,7 +2,7 @@
 import React from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import { Provider } from 'react-redux';
-import * as firebase from 'firebase';
+import firebase from 'firebase';
 import { ReactReduxFirebaseProvider } from 'react-redux-firebase';
 import MainLayout from './components/layout/MainLayout/MainLayout';
 import store from './redux/store';
@@ -37,7 +37,7 @@ const rrfProps = {
   // createFirestoreInstance // <- needed if using firestore
 };
 
-function App() {
+export default function App() {
   return (
     <Provider store={store}>
       <ReactReduxFirebaseProvider {...rrfProps}>
@@ -56,5 +56,3 @@ function App() {
     </Provider>
   );
 }
-
-export default App;

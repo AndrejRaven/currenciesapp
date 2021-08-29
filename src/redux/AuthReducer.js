@@ -65,28 +65,23 @@ export const signUp = (email, password) => {
 export default function reducer(statePart = [], action = {}) {
   switch (action.type) {
     case LOGIN_SUCCESS: {
-      console.log('login succes');
       return {
         ...statePart,
         authError: null
       };
     }
     case LOGIN_ERROR: {
-      console.log('auth error');
       return {
         ...statePart,
         authError: action.payload
       };
     }
     case SIGN_OUT: {
-      console.log('You signed out..');
       return statePart;
     }
     case SIGN_UP:
-      console.log('Welcome..');
       return statePart;
     case SIGN_UP_ERR:
-      console.log('Sign up error...');
       return {
         ...statePart,
         authError: action.payload
